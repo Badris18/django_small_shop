@@ -41,6 +41,19 @@ INSTALLED_APPS = [
     'backend'
 ]
 
+ALLOWED_HOSTS= [
+    '0.0.0.0',
+    '127.0.0.1',
+    'django-small-shop.onrender.com'
+]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://django-small-shop.onrender.com"
+]
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
