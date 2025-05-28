@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from backend.models import Category, Brand
+from backend.models import Category, Brand, Author, Student, MarkList, Book
 
 
 # Registering the Category model
@@ -25,4 +25,26 @@ class BrandAdmin(admin.ModelAdmin):
     image_tag.short_description = 'Image'
 admin.site.register(Brand,BrandAdmin)
 
-#
+class BookInline(admin.TabularInline):
+    model = Book
+
+class AuthorAdmin(admin.ModelAdmin):
+    inlines = [
+             BookInline,
+           ]
+
+admin.site.register(Book)
+
+admin.site.register(Author, AuthorAdmin)
+
+class MarkListInLine(admin.StackedInline):
+    model = MarkList
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ['id','name']
+
+    inlines = [
+        MarkListInLine,
+    ]
+admin.site.register(MarkList)
+
+admin.site.register(Student, StudentAdmin)
